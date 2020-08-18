@@ -13,18 +13,20 @@ lastButOne (x:y:[]) = x
 lastButOne (_:xs) = lastButOne xs
 
 -- 1.03 (*) Find the K'th element of a list.
-nth :: [a] -> Int -> Maybe a
-nth [] target = Nothing
-nth (x:xs) target
+nth :: Int ->  [a] -> Maybe a
+nth target [] = Nothing
+nth target (x:xs)
     | target < 0  = Nothing
     | target == 0 = Just x
-    | otherwise   = nth (target - 1) xs
-
--- nth Int -> [a] -> a
--- nth y xs = xs!!y
+    | otherwise   = Lists.nth (target - 1) xs
 
 -- 1.04 (*) Find the number of elements of a list.
--- length :: [a] -> Int
+length :: [a] -> Int
+length xs = length' 0 xs
+
+length' :: Int -> [a] -> Int
+length' a [] = a
+length' a (x:xs) = length' (a + 1) xs
 
 -- 1.05 (*) Reverse a list.
 -- rev :: [a] -> Int
