@@ -25,7 +25,8 @@ length :: [a] -> Int
 length = foldl (\a x -> a + 1) 0
 
 -- 1.05 (*) Reverse a list.
--- rev :: [a] -> Int
+rev :: [a] -> [a]
+rev = foldl (\ ys x -> x : ys) []
 
 -- 1.06 (*) Find out whether a list is a palindrome.
 -- isPalindrome :: [a] -> Bool
