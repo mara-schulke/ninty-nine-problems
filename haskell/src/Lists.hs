@@ -29,7 +29,9 @@ rev :: [a] -> [a]
 rev = foldl (\ ys x -> x : ys) []
 
 -- 1.06 (*) Find out whether a list is a palindrome.
--- isPalindrome :: [a] -> Bool
+isPalindrome :: [Int] -> Bool
+isPalindrome xs = take half xs == take half (rev xs)
+                  where half = Lists.length xs `div` 2
 
 -- 1.07 (**) Flatten a nested list structure.
 -- flatten :: [[a]] -> [a]
