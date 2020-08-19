@@ -22,11 +22,7 @@ nth target (x:xs)
 
 -- 1.04 (*) Find the number of elements of a list.
 length :: [a] -> Int
-length xs = length' 0 xs
-
-length' :: Int -> [a] -> Int
-length' a [] = a
-length' a (x:xs) = length' (a + 1) xs
+length = foldl (\a x -> a + 1) 0
 
 -- 1.05 (*) Reverse a list.
 -- rev :: [a] -> Int
