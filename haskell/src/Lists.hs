@@ -28,19 +28,38 @@ length = foldl (\a x -> a + 1) 0
 rev :: [a] -> [a]
 rev = foldl (\ ys x -> x : ys) []
 
+-- make this generic!
 -- 1.06 (*) Find out whether a list is a palindrome.
 isPalindrome :: [Int] -> Bool
 isPalindrome xs = take half xs == take half (rev xs)
                   where half = Lists.length xs `div` 2
 
 -- 1.07 (**) Flatten a nested list structure.
--- flatten :: [[a]] -> [a]
+flatten :: [[a]] -> [a]
+flatten = foldl (++) []
 
+-- make this generic!
 -- 1.08 (**) Eliminate consecutive duplicates of list elements.
--- compress :: [a] -> [a]
+compress :: [Int] -> [Int]
+compress = foldl (\ys x -> if x `elem` ys then ys else ys ++ [x]) []
 
 -- 1.09 (**) Pack consecutive duplicates of list elements into sublists.
--- pack :: [a] -> [a]
+pack :: [Int] -> [[Int]]
+pack = foldl pack' []
+
+pack' :: [[Int]] -> Int -> [[Int]]
+pack' [] x =  [[x]]
+pack' ys x
+    | x `elem` Prelude.last ys = take (Lists.length ys - 1) ys ++ [Prelude.last ys ++ [x]]
+    | otherwise                =  ys ++ [[x]]
+
+-- pack :: [a] -> [Packed a]
+-- pack = foldl pack' []
+
+-- pack' ys x
+--     | Single x `elem` ys      = (filter (\y -> y /= x) ys) ++ [Packed (2, x)]
+--     | Packed (a, x) `elem` ys = 
+--     | otherwise               = ys ++ [Single x]
 
 -- 1.10 (*) Run-length encoding of a list.
 -- encode :: [a] -> [(Int, a)]
