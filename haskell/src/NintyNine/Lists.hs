@@ -2,9 +2,12 @@
 
 module Lists where
 
+import Data.Maybe (fromJust)
+
 -- 1.01 (*) Find the last element of a list.
-last :: [a] -> a
-last (x:[]) = x
+last :: [a] -> Maybe a
+last [] = Nothing
+last (x:[]) = Just x
 last (_:xs) = Lists.last xs
 
 -- 1.02 (*) Find the last but one element of a list.
@@ -50,8 +53,11 @@ pack = foldl pack' []
 pack' :: [[Int]] -> Int -> [[Int]]
 pack' [] x =  [[x]]
 pack' ys x
-    | x `elem` Prelude.last ys = take (Lists.length ys - 1) ys ++ [Prelude.last ys ++ [x]]
-    | otherwise                =  ys ++ [[x]]
+    | x `elem` last = withoutLast ++ [last ++ [x]]
+    | otherwise     = ys ++ [[x]]
+    where last        = fromJust $ Lists.last ys
+          len         = Lists.length ys
+          withoutLast = take (len - 1) ys
 
 -- pack :: [a] -> [Packed a]
 -- pack = foldl pack' []
@@ -62,10 +68,30 @@ pack' ys x
 --     | otherwise               = ys ++ [Single x]
 
 -- 1.10 (*) Run-length encoding of a list.
--- encode :: [a] -> [(Int, a)]
+encode :: [Char] -> [(Int, Char)]
+encode = foldl encode' []
+
+encode' :: [(Int, Char)] -> Char -> [(Int, Char)]
+encode' [] x =  [(1, x)]
+encode' ys x
+    | x == snd last = withoutLast ++ [(fst last + 1, x)]
+    | otherwise     = ys ++ [(1, x)]
+    where last        = fromJust $ Lists.last ys
+          len         = Lists.length ys
+          withoutLast = take (len - 1) ys
 
 -- 1.11 (*) Modified run-length encoding.
--- -- how?
+data Encoded = Single Char | Multiple Int Char deriving (Eq, Show)
+
+encodem :: [Char] -> [Encoded]
+encodem xs = map intoEncoded $ foldl encode' [] xs
+
+intoEncoded :: (Int, Char) -> Encoded
+intoEncoded (1, x) = Single x
+intoEncoded (n, x)
+    | n <= 0 = error "There shouldn't be tuples with 0 as occurence counter. Check your code."
+    | n == 1 = Single x
+    | n >= 1 = Multiple n x
 
 -- 1.12 (**) Decode a run-length encoded list.
 -- decode :: [(Int, a)] -> a
