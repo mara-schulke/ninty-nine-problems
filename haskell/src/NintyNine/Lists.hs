@@ -83,9 +83,6 @@ encode' ys x
 -- 1.11 (*) Modified run-length encoding.
 data Encoded = Single Char | Multiple Int Char deriving (Eq, Show)
 
-encodem :: [Char] -> [Encoded]
-encodem xs = map intoEncoded $ foldl encode' [] xs
-
 intoEncoded :: (Int, Char) -> Encoded
 intoEncoded (1, x) = Single x
 intoEncoded (n, x)
@@ -93,8 +90,21 @@ intoEncoded (n, x)
     | n == 1 = Single x
     | n >= 1 = Multiple n x
 
+fromEncoded :: Encoded -> (Int, Char)
+fromEncoded e = case e of
+    Single x     -> (1, x)
+    Multiple n x -> (n, x)
+
+encodem :: [Char] -> [Encoded]
+encodem xs = map intoEncoded $ foldl encode' [] xs
+
 -- 1.12 (**) Decode a run-length encoded list.
--- decode :: [(Int, a)] -> a
+intoRaw :: (Int, Char) -> [Char]
+intoRaw (n, x) = take n $ repeat x
+
+
+decode :: [Encoded] -> [Char]
+decode xs = flatten $ map (\e -> intoRaw $ fromEncoded e) xs
 
 -- 1.13 (**) Run-length encoding of a list (direct solution).
 -- -- rl_encode :: [(Int, a)] -> a
