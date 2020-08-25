@@ -102,21 +102,30 @@ encodem xs = map intoEncoded $ foldl encode' [] xs
 intoRaw :: (Int, Char) -> [Char]
 intoRaw (n, x) = take n $ repeat x
 
-
 decode :: [Encoded] -> [Char]
 decode xs = flatten $ map (\e -> intoRaw $ fromEncoded e) xs
 
 -- 1.13 (**) Run-length encoding of a list (direct solution).
--- -- rl_encode :: [(Int, a)] -> a
+-- already implemented
 
 -- 1.14 (*) Duplicate the elements of a list.
--- dublicate :: [a] -> [a]
+duplicate :: [a] -> [a]
+duplicate = foldl (\ys x -> ys ++ [x, x]) []
 
 -- 1.15 (**) Duplicate the elements of a list a given number of times.
--- dublicateTimes :: Int -> [a] -> [a]
+duplicateTimes :: Int -> [a] -> [a]
+duplicateTimes n = foldl (\ys x -> ys ++ (take n $ repeat x)) []
 
 -- 1.16 (**) Drop every N'th element from a list.
--- dropNth :: Int -> [a] -> [a]
+dropEvery :: Int -> [a] -> [a]
+dropEvery n = foldl (dropEvery' n) []
+
+dropEvery' :: Int -> [a] -> a -> [a]
+dropEvery' n [] x = if n > 1 then [x] else []
+dropEvery' n ys x
+    | Lists.length ys `mod` n == 0 = ys
+    | otherwise                    = ys ++ [x]
+
 
 -- 1.17 (*) Split a list into two parts; the length of the first part is given.
 -- split :: Int -> [a] -> [[a]]
