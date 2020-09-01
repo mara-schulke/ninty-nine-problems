@@ -118,13 +118,14 @@ duplicateTimes n = foldl (\ys x -> ys ++ (take n $ repeat x)) []
 
 -- 1.16 (**) Drop every N'th element from a list.
 dropEvery :: Int -> [a] -> [a]
-dropEvery n = foldl (dropEvery' n) []
+dropEvery n xs = map (\x -> fst x) $ foldl (dropEvery' n) [] $ zip xs [0..]
 
-dropEvery' :: Int -> [a] -> a -> [a]
-dropEvery' n [] x = if n > 1 then [x] else []
+dropEvery' :: Int -> [(a, Int)] -> (a, Int) -> [(a, Int)]
 dropEvery' n ys x
-    | Lists.length ys `mod` n == 0 = ys
-    | otherwise                    = ys ++ [x]
+    | (index == 0) and (n /= 1) = ys ++ [x]
+    | index `mod` n == 0        = ys
+    | otherwise                 = ys ++ [x]
+    where index = snd x
 
 
 -- 1.17 (*) Split a list into two parts; the length of the first part is given.
