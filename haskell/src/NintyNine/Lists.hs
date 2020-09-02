@@ -29,7 +29,7 @@ length = foldl (\a x -> a + 1) 0
 
 -- 1.05 (*) Reverse a list.
 rev :: [a] -> [a]
-rev = foldl (\ ys x -> x : ys) []
+rev = foldl (\ys x -> x : ys) []
 
 -- make this generic!
 -- 1.06 (*) Find out whether a list is a palindrome.
@@ -100,10 +100,10 @@ encodem xs = map intoEncoded $ foldl encode' [] xs
 
 -- 1.12 (**) Decode a run-length encoded list.
 intoRaw :: (Int, Char) -> [Char]
-intoRaw (n, x) = take n $ repeat x
+intoRaw (n, x) = replicate n x
 
 decode :: [Encoded] -> [Char]
-decode xs = flatten $ map (\e -> intoRaw $ fromEncoded e) xs
+decode xs = flatten $ map (intoRaw . fromEncoded) xs
 
 -- 1.13 (**) Run-length encoding of a list (direct solution).
 -- already implemented
@@ -114,17 +114,17 @@ duplicate = foldl (\ys x -> ys ++ [x, x]) []
 
 -- 1.15 (**) Duplicate the elements of a list a given number of times.
 duplicateTimes :: Int -> [a] -> [a]
-duplicateTimes n = foldl (\ys x -> ys ++ (take n $ repeat x)) []
+duplicateTimes n = foldl (\ys x -> ys ++ replicate n x) []
 
 -- 1.16 (**) Drop every N'th element from a list.
 dropEvery :: Int -> [a] -> [a]
-dropEvery n xs = map (\x -> fst x) $ foldl (dropEvery' n) [] $ zip xs [0..]
+dropEvery n xs = map fst $ foldl (dropEvery' n) [] $ zip xs [1..]
 
 dropEvery' :: Int -> [(a, Int)] -> (a, Int) -> [(a, Int)]
 dropEvery' n ys x
-    | (index == 0) and (n /= 1) = ys ++ [x]
-    | index `mod` n == 0        = ys
-    | otherwise                 = ys ++ [x]
+    | (index == 0) && (n /= 1) = ys ++ [x]
+    | index `mod` n == 0       = ys
+    | otherwise                = ys ++ [x]
     where index = snd x
 
 
