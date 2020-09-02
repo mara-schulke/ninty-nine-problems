@@ -129,7 +129,11 @@ dropEvery' n ys x
 
 
 -- 1.17 (*) Split a list into two parts; the length of the first part is given.
--- split :: Int -> [a] -> [[a]]
+split :: Int -> [a] -> Maybe ([a], [a])
+split n xs
+    | len >= n  = Just (take n xs, reverse $ take (len - n) $ reverse xs)
+    | otherwise = Nothing
+    where len   = Lists.length xs
 
 -- 1.18 (**) Extract a slice from a list.
 -- slice :: Int -> Int -> [a] -> [a]
