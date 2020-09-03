@@ -143,7 +143,15 @@ slice a b xs
     where len     = Lists.length xs
 
 -- 1.19 (**) Rotate a list N places to the left.
--- rotate :: Int -> [a] -> [a]
+
+rotate :: Int -> [a] -> [a]
+rotate n xs = error "not correctly implemented"
+-- rotate n xs
+--     | m > 0     = take m xs ++ fromJust (Lists.slice m (len - m) xs)
+--     | m < 0     = fromJust (Lists.slice (len + m) len xs) ++ take (len + m) xs
+--     | otherwise = xs
+--     where len   = Lists.length xs
+--           m     = n `mod` len
 
 -- 1.20 (*) Remove the K'th element from a list.
 -- removeAt :: Int -> [a] -> [a]
