@@ -136,7 +136,11 @@ split n xs
     where len   = Lists.length xs
 
 -- 1.18 (**) Extract a slice from a list.
--- slice :: Int -> Int -> [a] -> [a]
+slice :: Int -> Int -> [a] -> Maybe [a]
+slice a b xs
+    | a + b > len = Nothing
+    | otherwise   = Just $ reverse $ take b $ reverse $ take (a + b) xs
+    where len     = Lists.length xs
 
 -- 1.19 (**) Rotate a list N places to the left.
 -- rotate :: Int -> [a] -> [a]
