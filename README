@@ -1,0 +1,31 @@
+https://sites.google.com/site/prologsite/prolog-problems/1
+
+## Lists
+[x] 1.01 (*) Find the last element of a list.
+[x] 1.02 (*) Find the last but one element of a list.
+[x] 1.03 (*) Find the K'th element of a list.
+[x] 1.04 (*) Find the number of elements of a list.
+[x] 1.05 (*) Reverse a list.
+[x] 1.06 (*) Find out whether a list is a palindrome.
+[x] 1.07 (**) Flatten a nested list structure.
+[x] 1.08 (**) Eliminate consecutive duplicates of list elements.
+[x] 1.09 (**) Pack consecutive duplicates of list elements into sublists.
+[x] 1.10 (*) Run-length encoding of a list.
+[x] 1.11 (*) Modified run-length encoding.
+[x] 1.12 (**) Decode a run-length encoded list.
+[x] 1.13 (**) Run-length encoding of a list (direct solution).
+[x] 1.14 (*) Duplicate the elements of a list.
+[x] 1.15 (**) Duplicate the elements of a list a given number of times.
+[x] 1.16 (**) Drop every N'th element from a list.
+[x] 1.17 (*) Split a list into two parts; the length of the first part is given.
+[x] 1.18 (**) Extract a slice from a list.
+[ ] 1.19 (**) Rotate a list N places to the left.
+[ ] 1.20 (*) Remove the K'th element from a list.
+[ ] 1.21 (*) Insert an element at a given position into a list.
+[ ] 1.22 (*) Create a list containing all integers within a given range.
+[ ] 1.23 (**) Extract a given number of randomly selected elements from a list.
+[ ] 1.24 (*) Lotto: Draw N different random numbers from the set 1..M.
+[ ] 1.25 (*) Generate a random permutation of the elements of a list.
+[ ] 1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list
+[ ] 1.27 (**) Group the elements of a set into disjoint subsets.
+[ ] 1.28 (**) Sorting a list of lists according to length of sublists.
