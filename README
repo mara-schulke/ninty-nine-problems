@@ -1,4 +1,4 @@
-https://sites.google.com/site/prologsite/prolog-problems/1
+https://sites.google.com/site/prologsite/prolog-problems/
 
 ## Lists
 [x] 1.01 (*) Find the last element of a list.
@@ -29,3 +29,16 @@ https://sites.google.com/site/prologsite/prolog-problems/1
 [ ] 1.26 (**) Generate the combinations of K distinct objects chosen from the N elements of a list
 [ ] 1.27 (**) Group the elements of a set into disjoint subsets.
 [ ] 1.28 (**) Sorting a list of lists according to length of sublists.
+
+## Arithmetic
+[x] 2.01 (**) Determine whether a given integer number is prime.
+[ ] 2.02 (**) Determine the prime factors of a given positive integer.
+[ ] 2.03 (**) Determine the prime factors of a given positive integer (2).
+[ ] 2.04 (*) A list of prime numbers.
+[ ] 2.05 (**) Goldbach's conjecture.
+[ ] 2.06 (**) A list of Goldbach compositions.
+[ ] 2.07 (**) Determine the greatest common divisor of two positive integer numbers.
+[ ] 2.08 (*) Determine whether two positive integer numbers are coprime.
+[ ] 2.09 (**) Calculate Euler's totient function phi(m).
+[ ] 2.10 (**) Calculate Euler's totient function phi(m) (2).
+[ ] 2.11 (*) Compare the two methods of calculating Euler's totient function
