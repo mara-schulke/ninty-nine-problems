@@ -40,6 +40,17 @@ primesBetween :: Int -> Int -> [Int]
 primesBetween f t = [x | x <- [f..t], isPrime x]
 
 -- 2.05 (**) Goldbach's conjecture.
+goldbachsConjecture :: Int -> Maybe (Int, Int)
+goldbachsConjecture 2 = Nothing
+goldbachsConjecture n
+    | n `mod` 2 /= 0  = Nothing
+    | otherwise       = Just (res, (n - res))
+        where primes   = [x | x <- [2..n + 1], isPrime x]
+              res      = fromJust $ find (\p -> exists $ find (\r -> (n - p == r)) primes) primes
+              exists x = case x of
+                             Just _  -> True
+                             Nothing -> False
+
 -- 2.06 (**) A list of Goldbach compositions.
 -- 2.07 (**) Determine the greatest common divisor of two positive integer numbers.
 -- 2.08 (*) Determine whether two positive integer numbers are coprime.
