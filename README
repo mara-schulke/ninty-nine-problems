@@ -34,7 +34,7 @@ https://sites.google.com/site/prologsite/prolog-problems/
 [x] 2.01 (**) Determine whether a given integer number is prime.
 [x] 2.02 (**) Determine the prime factors of a given positive integer.
 [x] 2.03 (**) Determine the prime factors of a given positive integer (2).
-[ ] 2.04 (*) A list of prime numbers.
+[x] 2.04 (*) A list of prime numbers.
 [ ] 2.05 (**) Goldbach's conjecture.
 [ ] 2.06 (**) A list of Goldbach compositions.
 [ ] 2.07 (**) Determine the greatest common divisor of two positive integer numbers.

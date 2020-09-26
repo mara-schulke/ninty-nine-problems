@@ -36,6 +36,9 @@ primeFactors n = [factor] ++ primeFactors (n `div` factor)
 -- primeFactorsEncoded :: encode $ primeFactors
 
 -- 2.04 (*) A list of prime numbers.
+primesBetween :: Int -> Int -> [Int]
+primesBetween f t = [x | x <- [f..t], isPrime x]
+
 -- 2.05 (**) Goldbach's conjecture.
 -- 2.06 (**) A list of Goldbach compositions.
 -- 2.07 (**) Determine the greatest common divisor of two positive integer numbers.
