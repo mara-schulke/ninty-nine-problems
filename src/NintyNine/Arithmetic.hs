@@ -2,6 +2,9 @@
 
 module Arithmetic where
 
+import Data.List (find)
+import Data.Maybe (fromJust)
+
 -- 2.01 (**) Determine whether a given integer number is prime.
 isPrime :: Int -> Bool
 isPrime n
@@ -18,6 +21,13 @@ isPrime' n i
     | otherwise            = isPrime' n (i + 6)
 
 -- 2.02 (**) Determine the prime factors of a given positive integer.
+primeFactors :: Int -> [Int]
+primeFactors 1 = []
+primeFactors n = [factor] ++ primeFactors (n `div` factor)
+    where primes      = [x | x <- [2..n + 1], isPrime x]
+          factorize x = fromJust $ find (\p -> x `mod` p == 0) primes
+          factor      = factorize n
+
 -- 2.03 (**) Determine the prime factors of a given positive integer (2).
 -- 2.04 (*) A list of prime numbers.
 -- 2.05 (**) Goldbach's conjecture.
