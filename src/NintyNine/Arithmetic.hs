@@ -29,6 +29,12 @@ primeFactors n = [factor] ++ primeFactors (n `div` factor)
           factor      = factorize n
 
 -- 2.03 (**) Determine the prime factors of a given positive integer (2).
+-- Lists.encode could be used here, if it was generic
+-- Possible implementation:
+--
+-- primeFactorsEncoded :: Int -> [(Int, Int)]
+-- primeFactorsEncoded :: encode $ primeFactors
+
 -- 2.04 (*) A list of prime numbers.
 -- 2.05 (**) Goldbach's conjecture.
 -- 2.06 (**) A list of Goldbach compositions.
