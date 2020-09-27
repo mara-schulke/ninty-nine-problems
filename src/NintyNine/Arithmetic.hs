@@ -53,11 +53,7 @@ goldbachsConjecture n
 
 -- 2.06 (**) A list of Goldbach compositions.
 goldbachsConjectureBetween :: Int -> Int -> [(Int, (Int, Int))]
-goldbachsConjectureBetween f t = [(x, (fromJust $ goldbachsConjecture x)) | x <- [l, l + 2..h]]
-                            where l = flatten f
-                                  h = flatten t
-                                  flatten y = if even y then y else if y > 4 then y - 1 else 4
-
+goldbachsConjectureBetween f t = [(x, (fromJust $ goldbachsConjecture x)) | x <- [f..t], even x, x >= 4]
 
 -- 2.07 (**) Determine the greatest common divisor of two positive integer numbers.
 -- 2.08 (*) Determine whether two positive integer numbers are coprime.
